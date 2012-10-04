@@ -1,6 +1,6 @@
 .settings
 .classpath
 .project
-.springbeans
+.springBeans
 target
 src/main/webapp/META-INF
