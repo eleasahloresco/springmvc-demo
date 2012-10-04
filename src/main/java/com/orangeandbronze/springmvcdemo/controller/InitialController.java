@@ -1,16 +1,15 @@
 package com.orangeandbronze.springmvcdemo.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class HelloController {
+public class InitialController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String printHello(Model model) {
-		model.addAttribute("message", "Spring MVC Hello World!");
-		return "hello";
+	public String welcomePage() {
+		return "employee";
 	}
+
 }

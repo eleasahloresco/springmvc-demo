@@ -13,10 +13,6 @@ import com.orangeandbronze.springmvcdemo.domain.Employee;
 @Repository("employeeDao")
 public class EmployeeDaoImpl implements EmployeeDao {
 
-//	public EmployeeDaoImpl(){
-//		super(Employee.class);
-//	}
-	
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -28,7 +24,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-
 
 	@Override
 	public void add(Employee employee) {
@@ -49,47 +44,44 @@ public class EmployeeDaoImpl implements EmployeeDao {
 	public void delete(Employee employee) {
 		sessionFactory.getCurrentSession().delete(employee);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Employee> getAll() {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Employee.class);
 		return criteria.list();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Employee> getByCriteria(String sqlQuery){
+	public List<Employee> getByCriteria(String sqlQuery) {
 		Query query = sessionFactory.getCurrentSession().createQuery(sqlQuery);
 		return query.list();
 	}
-	
+
 	@Override
-	public Employee getByEmployeeNo(Long employeeNo){
+	public Employee getByEmployeeNo(Long employeeNo) {
 		String sqlQuery = "from Employee employee where employee.employeeNo = :employeeNo";
 		Query query = getSessionFactory().getCurrentSession().createQuery(sqlQuery);
 		query.setParameter("employeeNo", employeeNo);
-		
-		if(query.list().size() == 0){
+
+		if (query.list().size() == 0) {
 			return new Employee();
-		}
-		else{
+		} else {
 			return (Employee) query.list().get(0);
 		}
 	}
-	
+
 	@Override
-	public Employee getByUsername(String username){
+	public Employee getByUsername(String username) {
 		String sqlQuery = "from Employee employee where employee.username = :username";
 		Query query = getSessionFactory().getCurrentSession().createQuery(sqlQuery);
 		query.setParameter("username", username);
-		
-		if(query.list().size() == 0){
+
+		if (query.list().size() == 0) {
 			return null;
 		}
-		else{
-			return (Employee) query.list().get(0);
-		}
+		return (Employee) query.list().get(0);
 	}
-	
+
 }

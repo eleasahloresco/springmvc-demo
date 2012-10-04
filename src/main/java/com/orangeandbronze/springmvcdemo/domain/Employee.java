@@ -5,8 +5,8 @@ import java.math.BigDecimal;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -15,22 +15,21 @@ public class Employee {
 
 	@Id
 	@Column(name = "ID")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long employeeId;
-	
+
 	@Column(name = "FULL_NAME")
 	private String fullName;
-	
+
 	@Column(name = "POSITION")
 	private String position;
-	
+
 	@Column(name = "SALARY")
 	private BigDecimal salary;
-	
+
 	@Column(name = "SUPERVISOR")
 	private String immediateSupervisor;
 
-	private Branch branch;
-	
 	@NotNull(message = "Please provide your desired Employee ID.")
 	public Long getEmployeeId() {
 		return employeeId;

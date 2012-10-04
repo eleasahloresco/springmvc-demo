@@ -15,11 +15,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	private EmployeeDao employeeDao;
 
-	@Autowired
-	public void setEmployeeDao(EmployeeDao employeeDao) {
-		this.employeeDao = employeeDao;
-	}
-
 	@Override
 	public void addEmployee(Employee employee) {
 		employeeDao.add(employee);
@@ -28,6 +23,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public List<Employee> getAllEmployees() {
 		return employeeDao.getAll();
+	}
+
+	@Autowired
+	public void setEmployeeDao(EmployeeDao employeeDao) {
+		this.employeeDao = employeeDao;
 	}
 
 }

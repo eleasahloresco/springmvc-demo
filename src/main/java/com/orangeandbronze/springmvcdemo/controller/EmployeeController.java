@@ -2,8 +2,6 @@ package com.orangeandbronze.springmvcdemo.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,10 +30,9 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/addEmployee", method = RequestMethod.GET)
-	public String addEmployeeForm(HttpServletRequest request, Model model) {
+	public String addEmployeeForm(Model model) {
 		Employee employeeForAdding = new Employee();
 		model.addAttribute("employee", employeeForAdding);
-		model.addAttribute("action", request.getContextPath() + "/employee/addEmployee");
 		return "addEmployee";
 	}
 
